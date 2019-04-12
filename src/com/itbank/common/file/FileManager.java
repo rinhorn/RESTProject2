@@ -21,15 +21,15 @@ public class FileManager {
 	}
 	
 	//파일명 바꾸기 : 원리는 새로운 파일명을 날짜를 이용한다.
-	public boolean renameByDate(File oriFile, String ext) {
-		System.out.println("넘겨받은 파일의 풀 경로는 "+oriFile.getAbsolutePath());
-		String fullPath=oriFile.getAbsolutePath();
-		
+	public String renameByDate(File ori,String dir) {
 		long time=System.currentTimeMillis();
+		String filename=time+"."+getExt(ori.getName());//파일 이름
 		
-		oriFile.renameTo(new File(""));
-		
-		return false;
+		boolean result=ori.renameTo(new File(dir+"/"+filename));
+		if(result==false) {
+			filename=null;
+		}
+		return filename;
 	}
 	
 	/*

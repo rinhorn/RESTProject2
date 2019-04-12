@@ -52,12 +52,12 @@ public class MountainController {
 		return jsonArray.toString();
 	}
 	
+	/*
 	//산 정보 등록
 	@RequestMapping(value="/admin/mountain/regist", method=RequestMethod.POST)
 	//@ResponseBody 비동기방식으로 안가므로 쓸 필요없음
 	public String regist(Mountain mountain, HttpServletRequest request) {
 		MultipartFile myFile=mountain.getMyFile();
-		//myFile.get
 		
 		String filename=myFile.getOriginalFilename();
 		System.out.println("파일명은 "+filename);
@@ -68,11 +68,15 @@ public class MountainController {
 		
 		try {
 			uploadFile=new File(realPath+"/"+filename);//미래에 만들어질 파일네임
-			String ext=fileManager.getExt(filename);
-			fileManager.renameByDate(uploadFile, ext);
+			//String ext=fileManager.getExt(filename);
+			myFile.transferTo(new File(realPath+"/"+filename));//업로드
+			filename=fileManager.renameByDate(uploadFile, realPath);//업로드 된 파일명 교체
+			System.out.println(filename);
 			
-			myFile.transferTo(new File(realPath+"/"+filename));
-			mountain.setFilename(filename);
+			if(filename!=null) {
+				mountain.setFilename(filename);
+				mountainService.insert(mountain);
+			}
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -80,7 +84,7 @@ public class MountainController {
 		}
 		
 		
-		/*
+		//
 		InputStream fis=null;
 		FileOutputStream fos=null;
 		try {
@@ -99,14 +103,44 @@ public class MountainController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		*/
-	
-		mountainService.insert(mountain);
-		
-		
+		//
+
 		return "redirect:/admin/mountain/mtlist";
 	}
-	
+	*/
+
+	   // 산 정보 등록
+	   @RequestMapping(value = "/admin/mountain/regist", method = RequestMethod.POST)
+	   public String regist(Mountain mountain, HttpServletRequest request) {
+	      MultipartFile myFile = mountain.getMyFile();
+	      String filename = myFile.getOriginalFilename();
+	      System.out.println("파일명은 " + filename);
+	      
+	      String realPath = request.getServletContext().getRealPath("/data");
+	      System.out.println(realPath);
+	      
+	      File uploadFile=null;
+	      try {
+	    	 uploadFile=new File(realPath + "/" + filename);
+	    	 //업로드
+	    	 myFile.transferTo(uploadFile);
+	    	 
+	    	 //업로드된 파일명 교체
+	    	 filename=fileManager.renameByDate(uploadFile, realPath);
+	    	 if(filename!=null) {
+	    		 mountain.setFilename(filename);
+	    		 mountainService.insert(mountain);
+	    	 }
+	      } catch (IllegalStateException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      }
+
+	      mountainService.insert(mountain);
+	      return "redirect:/admin/mountain/mtList";
+	   }
+	   
 	//산 목록 보기
 	@RequestMapping(value="/admin/mountain/mtlist",method=RequestMethod.GET)
 	public ModelAndView selectAll() {
