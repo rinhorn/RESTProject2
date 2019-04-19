@@ -36,5 +36,27 @@ public class MountainServiceImpl implements MountainService{
 		}
 	}
 
+	public List selectAll() {
+		
+		return mountainDAO.selectAll();
+	}
+
+	public Mountain select(int mountain_id) {
+
+		return mountainDAO.select(mountain_id);
+	}
+
+	@Override
+	public void update(Mountain mountain) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(int mountain_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

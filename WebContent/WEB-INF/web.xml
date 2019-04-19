@@ -54,26 +54,28 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/</url-pattern> <!-- <url-pattern>/*</url-pattern>이렇게하면 jsp에 접근하지 못함 -->
 	</servlet-mapping>
 	
 	<!-- 하나의 컨테이너에는 여러 개의 servlet 이 들어있을 수 있다 
 		각각 다른 servlet 에 들어 있는 bean 들은 서로 사용할 수 없다 -->
 	<!-- 웹브라우저가 아닌 그 이외의 요청을 처리하는 서블릿 -->
-<!-- 	
+	
+	<!-- 이기종에 상관없는 즉, 이기종간 데이터 교환을 가능하게 하는 웹서비스로 지도 서비스를 제공해주자. 그것도 RESTful 하게! -->
+
 	<servlet>
-		<servlet-name>testServlet</servlet-name>
+		<servlet-name>restservlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				WEB-INF/test.xml
+				WEB-INF/rest-context.xml
 			</param-value> 
 		</init-param>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>testServlet</servlet-name>
-		<url-pattern>/test/*</url-pattern>
+		<servlet-name>restservlet</servlet-name>
+		<url-pattern>/rest</url-pattern>
 	</servlet-mapping>
--->
+
 </web-app>

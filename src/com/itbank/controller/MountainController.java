@@ -88,6 +88,9 @@ public class MountainController {
 	@RequestMapping(value = "/admin/mountain/mtList", method = RequestMethod.GET)
 	public ModelAndView selectAll() {
 		ModelAndView mav = new ModelAndView("/admin/map/list");
+		List mtList=mountainService.selectAll();
+		mav.addObject("mtList", mtList);
+		
 		return mav;
 	}
 

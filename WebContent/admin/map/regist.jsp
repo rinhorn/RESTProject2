@@ -115,8 +115,8 @@ input[type=button]:hover {
 
 			<input type="file" name="myFile" />
 			<!-- DTO에서 MultipartFile 의 변수명과 일치해야 등록됨 -->
-			<input type="text" name="lati" placeholder="위도" value="0"> <input
-				type="text" name="longi" placeholder="경도" value="0"> <select
+			<input type="text" name="lati" placeholder="위도"> <input
+				type="text" name="longi" placeholder="경도"> <select
 				name="marker">
 				<option value="">마커 선택</option>
 				<option value="pin1.png">초록핀</option>

@@ -9,9 +9,9 @@ public class Mountain {
 	private String detail;
 	private String filename;
 	//스프링에서 파일을 처리할 수 있는 파일처리자 등록
-	private MultipartFile myFile;
-	private long lati;
-	private long longi;
+	private MultipartFile myFile;//여러건의 사진을 넣고 싶다면 배열로 가면된다 MultipartFile[]
+	private double lati;
+	private double longi;
 	private String marker;
 	
 	public int getMountain_id() {
@@ -50,16 +50,16 @@ public class Mountain {
 	public void setMyFile(MultipartFile myFile) {
 		this.myFile = myFile;
 	}
-	public long getLati() {
+	public double getLati() {
 		return lati;
 	}
-	public void setLati(long lati) {
+	public void setLati(double lati) {
 		this.lati = lati;
 	}
-	public long getLongi() {
+	public double getLongi() {
 		return longi;
 	}
-	public void setLongi(long longi) {
+	public void setLongi(double longi) {
 		this.longi = longi;
 	}
 	public String getMarker() {

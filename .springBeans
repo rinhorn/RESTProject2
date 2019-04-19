@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
 	<version>1</version>
-	<pluginVersion><![CDATA[3.9.7.201812201020-RELEASE]]></pluginVersion>
+	<pluginVersion><![CDATA[3.9.8.201903260659-RELEASE]]></pluginVersion>
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
@@ -11,6 +11,7 @@
 		<config>WebContent/WEB-INF/front.xml</config>
 		<config>WebContent/WEB-INF/sub.xml</config>
 		<config>WebContent/WEB-INF/test.xml</config>
+		<config>WebContent/WEB-INF/rest-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

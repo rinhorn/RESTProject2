@@ -14,11 +14,11 @@ public class MybatisMountainDAO implements MountainDAO{
 	private SqlSessionTemplate sessionTemplate;
 
 	public List selectAll() {
-		return null;
+		return sessionTemplate.selectList("Mountain.selectAll");
 	}
 
 	public Mountain select(int mountain_id) {
-		return null;
+		return sessionTemplate.selectOne("Mountain.select",mountain_id);
 	}
 
 	public int insert(Mountain mountain) {
